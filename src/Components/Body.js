@@ -31,6 +31,7 @@ export default class Body extends React.PureComponent {
 
         this.retrieveGifs = this.retrieveGifs.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
+        this.handleSetPage = this.handleSetPage(this);
     }
 
     retrieveGifs(query) {
@@ -59,13 +60,17 @@ export default class Body extends React.PureComponent {
         this.retrieveGifs(query);
     }
 
+    handleSetPage(page) {
+        this.setState({ page });
+    }
+
     render() {
         const { queryResults, page, totalItems } = this.state;
         return (
             <div style={{ margin: '25px' }}>
                 <SearchBar onSearch={this.handleSearch} />
                 <GifsContainer gifs={queryResults} />
-                <Pagination page={page} totalItems={totalItems} pageSize={PAGE_SIZE} />
+                <Pagination page={page} totalItems={totalItems} pageSize={PAGE_SIZE} onPageChange={this.handleSetPage} />
             </div>
         );
     }

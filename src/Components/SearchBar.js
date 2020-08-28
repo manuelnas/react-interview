@@ -19,12 +19,11 @@ export default class SearchBar extends React.Component{
     }
 
     render() {
-        const { query } = this.state; 
-        const { onSearch } = this.props;
+        const { query } = this.state;
         return (
             <div>
                 <form onSubmit={this.handleSearch}>
-                    <input onChange={event => this.setState({ query: event.target.value })} placeholder="Search Gifs" />
+                    <input value={query} onChange={event => this.setState({ query: event.target.value })} placeholder="Search Gifs" />
                     <button type="submit">Search</button>
                 </form>
             </div>
